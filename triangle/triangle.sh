@@ -1,24 +1,32 @@
 #!/usr/bin/env bash
 
-# The following comments should help you get started:
-# - Bash is flexible. You may use functions or write a "raw" script.
-#
-# - Complex code can be made easier to read by breaking it up
-#   into functions, however this is sometimes overkill in bash.
-#
-# - You can find links about good style and other resources
-#   for Bash in './README.md'. It came with this exercise.
-#
-#   Example:
-#   # other functions here
-#   # ...
-#   # ...
-#
-#   main () {
-#     # your main function code here
-#   }
-#
-#   # call main with all of the positional arguments
-#   main "$@"
-#
-# *** PLEASE REMOVE THESE COMMENTS BEFORE SUBMITTING YOUR SOLUTION ***
+triangle_is_not_valid () {
+    if [[ $2 == 0 || $3 == 0 || $4 == 0 ]]; then
+        return 1
+    elif (( $2 + $3 < $4 )) || (( $3 + $4 < $2 ))  || (( $2 + $4 < $3 )); then
+        return 1
+    else
+        return 0
+    fi
+}
+
+main () {
+    triangle_is_not_valid "$@"
+    if [[  $? -eq 1 ]] ; then
+        echo "false"
+    elif [[ $1 == "equilateral" ]]; then
+        if [[ $2 == "$3" && $2 == "$4" ]]; then
+            echo "true"
+        else
+            echo "false"
+        fi
+    elif [[ $1 == "isosceles" ]]; then
+        if [[ $2 == "$3" || $2 == "$4" || $3 == "$4" ]]; then
+            echo "true"
+        else
+            echo "false"
+        fi
+    fi
+
+}
+main "$@"
