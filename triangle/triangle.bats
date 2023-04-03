@@ -98,42 +98,36 @@ load bats-extra
 # Test returns true if the triangle is scalene
 
 @test "no sides are equal, scalene" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 5 4 6
   assert_success
   assert_output "true"
 }
 
 @test "all sides are equal, scalene" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 4 4 4
   assert_success
   assert_output "false"
 }
 
 @test "first and second sides are equal" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 4 4 3
   assert_success
   assert_output "false"
 }
 
 @test "first and third sides are equal" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 3 4 3
   assert_success
   assert_output "false"
 }
 
 @test "second and third sides are equal" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 4 3 3
   assert_success
   assert_output "false"
 }
 
 @test "may not violate triangle inequality" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 7 3 2
   assert_success
   assert_output "false"
@@ -142,7 +136,6 @@ load bats-extra
 # Bonus: deal with floats
 
 @test "sides may be floats, scalene" {
-  [[ $BATS_RUN_SKIPPED == "true" ]] || skip
   run bash triangle.sh scalene 0.5 0.4 0.6
   assert_success
   assert_output "true"
